@@ -1,0 +1,564 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f3fafb">
+    <title>MicroScan | Microplastics Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header class="topbar">
+        <a class="brand" href="/">
+            <span class="brand-icon">M</span>
+            <span>
+                <strong>MicroScan</strong>
+                <small>Microplastics Monitoring</small>
+            </span>
+        </a>
+
+        <nav aria-label="Main navigation">
+            <a class="nav-link active" href="#home">Home</a>
+            <a class="nav-link" href="#workflow">How it works</a>
+            <a class="nav-link" href="#camera">Camera</a>
+        </nav>
+
+        <span class="system-pill">
+            <span class="status-dot"></span>
+            Local system
+        </span>
+    </header>
+
+
+    <main id="home">
+
+        <!-- HERO SECTION -->
+
+        <section class="hero">
+
+            <div class="hero-copy">
+
+                <span class="eyebrow">WATER QUALITY RESEARCH</span>
+
+                <h1>Understand what's<br>in your water.</h1>
+
+                <p>
+                    Prepare your sample, capture fluorescence images,
+                    and analyze potential microplastic particles with
+                    AI-assisted detection.
+                </p>
+
+                <div class="hero-actions">
+
+                    <a class="primary-button" href="#camera">
+                        Start New Test <span aria-hidden="true">→</span>
+                    </a>
+
+                    <a class="secondary-button" href="#workflow">
+                        Explore the process
+                    </a>
+
+                </div>
+
+                <p class="hero-note">
+                    <span class="status-dot"></span>
+                    Your sample analysis starts with guided preparation.
+                </p>
+
+            </div>
+
+
+            <div class="hero-visual" aria-label="Water sample illustration">
+
+                <div class="visual-orbit orbit-one"></div>
+                <div class="visual-orbit orbit-two"></div>
+
+                <div class="water-drop">
+                    <div class="drop-highlight"></div>
+
+                    <span class="particle particle-one"></span>
+                    <span class="particle particle-two"></span>
+                    <span class="particle particle-three"></span>
+                    <span class="particle particle-four"></span>
+                    <span class="particle particle-five"></span>
+                </div>
+
+                <div class="visual-label">
+                    <span class="status-dot"></span>
+                    AI-assisted image analysis
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- WORKFLOW SECTION -->
+
+        <section class="section-heading" id="workflow">
+
+            <div>
+                <span class="eyebrow">YOUR TESTING JOURNEY</span>
+
+                <h2>From water sample to results</h2>
+
+                <p>
+                    Follow each stage in order. We'll guide you through the process.
+                </p>
+            </div>
+
+            <span class="step-counter">4 main stages</span>
+
+        </section>
+
+
+        <section class="workflow-grid">
+
+            <article class="workflow-card">
+
+                <span class="workflow-number">01</span>
+
+                <div class="workflow-icon">◎</div>
+
+                <h3>Prepare sample</h3>
+
+                <p>
+                    Filter the water sample and follow the staining and drying instructions.
+                </p>
+
+                <span class="stage-label">Preparation</span>
+
+            </article>
+
+
+            <article class="workflow-card">
+
+                <span class="workflow-number">02</span>
+
+                <div class="workflow-icon">◉</div>
+
+                <h3>Capture images</h3>
+
+                <p>
+                    Prepare the dark chamber and use the connected ESP32-CAM to capture images.
+                </p>
+
+                <span class="stage-label">Image capture</span>
+
+            </article>
+
+
+            <article class="workflow-card">
+
+                <span class="workflow-number">03</span>
+
+                <div class="workflow-icon">⌕</div>
+
+                <h3>Analyze images</h3>
+
+                <p>
+                    Process captured images with the configured AI detection pipeline.
+                </p>
+
+                <span class="stage-label">AI analysis</span>
+
+            </article>
+
+
+            <article class="workflow-card">
+
+                <span class="workflow-number">04</span>
+
+                <div class="workflow-icon">▤</div>
+
+                <h3>Review results</h3>
+
+                <p>
+                    Review detections, save sample details, and prepare a report.
+                </p>
+
+                <span class="stage-label">Results & reporting</span>
+
+            </article>
+
+        </section>
+
+
+        <!-- CAMERA SECTION -->
+
+        <section class="camera-section" id="camera">
+
+            <div class="section-heading camera-heading">
+
+                <div>
+                    <span class="eyebrow">DEVICE CONNECTION</span>
+
+                    <h2>Camera monitoring</h2>
+
+                    <p>Your ESP32-CAM live monitoring system.</p>
+                </div>
+
+                <span class="connection-badge">
+                    <span class="status-dot"></span>
+                    Flask interface loaded
+                </span>
+
+            </div>
+
+
+            <!-- LIVE CAMERA PANEL -->
+
+            <div class="camera-panel">
+
+                <div class="camera-panel-heading">
+
+                    <div>
+                        <h3>Live Camera Preview</h3>
+
+                        <p>
+                            Inspect your sample before saving an image.
+                        </p>
+                    </div>
+
+                    <span class="camera-symbol">CAM</span>
+
+                </div>
+
+
+                <!-- DEVICE STATUS -->
+
+                <div class="device-status-grid">
+
+                    <div class="device-status">
+
+                        <span class="status-label">WEB SERVER</span>
+
+                        <strong>
+                            <span class="status-dot"></span>
+                            Running
+                        </strong>
+
+                    </div>
+
+
+                    <div class="device-status">
+
+                        <span class="status-label">ESP32-CAM</span>
+
+                        <strong id="esp-status">
+                            Connecting to camera...
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- LIVE STREAM -->
+
+                <div class="live-camera-container">
+
+                    <img
+                        id="liveStream"
+                        src="http://10.27.5.135:81/stream"
+                        alt="ESP32-CAM Live Stream"
+                        onload="cameraConnected()"
+                        onerror="cameraDisconnected()">
+
+                </div>
+
+
+                <!-- CAMERA CONTROLS -->
+
+                <div class="camera-actions">
+
+                    <button
+                        id="saveButton"
+                        class="primary-button"
+                        type="button"
+                        onclick="saveImage()">
+
+                        Save Image
+
+                    </button>
+
+
+                    <button
+                        id="rejectButton"
+                        class="secondary-button"
+                        type="button"
+                        onclick="rejectImage()">
+
+                        Reject Image
+
+                    </button>
+
+                </div>
+
+
+                <p
+                    id="captureMessage"
+                    class="capture-message"
+                    role="status"
+                    aria-live="polite">
+
+                    Live preview ready. Inspect your sample.
+
+                </p>
+
+            </div>
+
+
+            <!-- LATEST CAPTURED IMAGE -->
+
+            <div class="camera-panel image-panel">
+
+                <div class="camera-panel-heading">
+
+                    <div>
+                        <h3>Latest captured image</h3>
+
+                        <p>
+                            The most recently saved image from your ESP32-CAM.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                {% if latest_image %}
+
+                    <img
+                        src="{{ url_for('static', filename='uploads/' + latest_image) }}"
+                        alt="Latest ESP32-CAM image"
+                        class="captured-image">
+
+                {% else %}
+
+                    <div class="image-placeholder">
+                        No image received yet.
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- RECENT CAPTURES -->
+
+            <div class="camera-panel image-panel">
+
+                <div class="camera-panel-heading">
+
+                    <div>
+                        <h3>Recent captures</h3>
+
+                        <p>
+                            Your five most recently saved images.
+                        </p>
+                    </div>
+
+                    <span class="step-counter">
+                        {{ images[:5]|length }} images
+                    </span>
+
+                </div>
+
+
+                {% if images %}
+
+                    <div class="image-gallery">
+
+                        {% for image in images[:5] %}
+
+                            <article class="gallery-card">
+
+                                <span class="gallery-label">
+                                    Capture {{ loop.index }}
+                                </span>
+
+                                <img
+                                    src="{{ url_for('static', filename='uploads/' + image) }}"
+                                    alt="Captured image {{ loop.index }}">
+
+                            </article>
+
+                        {% endfor %}
+
+                    </div>
+
+                {% else %}
+
+                    <div class="image-placeholder">
+                        Your captured images will appear here.
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- RESEARCH DISCLAIMER -->
+
+            <p class="results-disclaimer">
+
+                <strong>Research note:</strong>
+
+                Captured images are not yet AI analysis results.
+                Particle counts, polymer identification, and water-safety
+                conclusions will only be shown when supported by the
+                implemented and validated analysis workflow.
+
+            </p>
+
+        </section>
+
+
+        <!-- FOOTER -->
+
+        <footer class="site-footer">
+
+            <a class="brand footer-brand" href="/">
+
+                <span class="brand-icon">M</span>
+
+                <strong>MicroScan</strong>
+
+            </a>
+
+            <p>
+                AI-assisted microplastic research ·
+                Preliminary results require appropriate verification.
+            </p>
+
+        </footer>
+
+    </main>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        // -----------------------------------------
+        // CAMERA CONNECTION STATUS
+        // -----------------------------------------
+
+        function cameraConnected() {
+
+            const status = document.getElementById("esp-status");
+
+            status.textContent = "Camera connected";
+
+        }
+
+
+        function cameraDisconnected() {
+
+            const status = document.getElementById("esp-status");
+
+            status.textContent = "Camera disconnected";
+
+        }
+
+
+        // -----------------------------------------
+        // SAVE ONE IMAGE
+        // -----------------------------------------
+
+        async function saveImage() {
+
+            const button = document.getElementById("saveButton");
+
+            const rejectButton = document.getElementById("rejectButton");
+
+            const message = document.getElementById("captureMessage");
+
+            const status = document.getElementById("esp-status");
+
+
+            button.disabled = true;
+
+            rejectButton.disabled = true;
+
+            message.textContent = "Capturing and saving image...";
+
+            status.textContent = "Capturing image";
+
+
+            try {
+
+                const response = await fetch("/save_image", {
+
+                    method: "POST"
+
+                });
+
+
+                const data = await response.json();
+
+
+                if (!response.ok || !data.success) {
+
+                    throw new Error(
+                        data.message || "Image capture failed."
+                    );
+
+                }
+
+
+                message.textContent =
+                    "Image saved successfully: " + data.filename;
+
+                status.textContent = "Camera connected";
+
+
+                // Refresh latest image and recent captures
+
+                setTimeout(() => {
+
+                    window.location.reload();
+
+                }, 1000);
+
+
+            } catch (error) {
+
+                console.error(error);
+
+                message.textContent = error.message;
+
+                status.textContent = "Capture failed";
+
+
+            } finally {
+
+                button.disabled = false;
+
+                rejectButton.disabled = false;
+
+            }
+
+        }
+
+
+        // -----------------------------------------
+        // REJECT IMAGE
+        // -----------------------------------------
+
+        function rejectImage() {
+
+            const message = document.getElementById("captureMessage");
+
+            message.textContent =
+                "Image rejected. No image was saved.";
+
+        }
+
+    </script>
+
+</body>
+</html>
